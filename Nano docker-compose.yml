@@ -1,82 +1,126 @@
-version: '3.8'
+version: 3.8
 
 x-common:
-  &db-environment
-  # Do not remove the "&db-password" from the end of the line below, it is important
-  # for Panel functionality.
-  MYSQL_PASSWORD: &db-password "CHANGE_ME"
-  MYSQL_ROOT_PASSWORD: "CHANGE_ME_TOO"
 
-  &panel-environment
-  # This URL should be the URL that your reverse proxy routes to the panel server
-  APP_URL: "https://pterodactyl.example.com"
-  # A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
-  APP_TIMEZONE: "UTC"
-  APP_SERVICE_AUTHOR: "noreply@example.com"
-  TRUSTED_PROXIES: "*" # Set this to your proxy IP
-  # Uncomment the line below and set to a non-empty value if you want to use Let's Encrypt
-  # to generate an SSL certificate for the Panel.
-  # LE_EMAIL: ""
+database:
 
-  &mail-environment
-  MAIL_FROM: "noreply@example.com"
-  MAIL_DRIVER: "smtp"
-  MAIL_HOST: "mail"
-  MAIL_PORT: "1025"
-  MAIL_USERNAME: ""
-  MAIL_PASSWORD: ""
-  MAIL_ENCRYPTION: "true"
+&db-environment
 
-# ##############################################################################
-# DANGER ZONE BELOW
-#
-# The remainder of this file likely does not need to be changed. Please only make modifications
-# below if you understand what you are doing.
-# ##############################################################################
-    volumes:
-      - "/srv/pterodactyl/database:/var/lib/mysql"
-    environment:
-      <<: *db-environment
-      MYSQL_DATABASE: "panel"
-      MYSQL_USER: "pterodactyl"
-  cache:
-    image: redis:alpine
-    restart: always
-  panel:
-    image: ghcr.io/pterodactyl/panel:latest
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    links:
-      - database
-      - cache
-    volumes:
-      - "/srv/pterodactyl/var/:/app/var/"
-      - "/srv/pterodactyl/nginx/:/etc/nginx/http.d/"
-      - "/srv/pterodactyl/certs/:/etc/letsencrypt/"
-      - "/srv/pterodactyl/logs/:/app/storage/logs"
-    environment:
-      <<: [*panel-environment, *mail-environment]
-      DB_PASSWORD: "db-password"
-      APP_ENV: "production"
-      APP_ENVIRONMENT_ONLY: "false"
-      CACHE_DRIVER: "redis"
-      SESSION_DRIVER: "redis"
-      QUEUE_DRIVER: "redis"
-      REDIS_HOST: "cache"
-      DB_HOST: "database"
-      DB_PORT: "3306"
-networks:
-  default:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
+Do not remove the "Adh-password" from the end of the line below, it is important
 
-press ctrl+o then press enter & again press ctrl+x
+for Panel functionality.
 
-docker-compose up -d
+MYSQL PASSWORD: &db-password "CHANGE_ME
 
-Create a user for the panel:
+MYSQL ROOT PASSWORD: "CHANGE ME 100
 
-docker-compose run --rm panel php artisan puser:make
+panel: Spanel-environment
+
+# This URL should be the URL that your reverse proxy routes to the panel server
+
+APP URI: "https://pterodactyl.example.com"
+
+# A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
+
+APP TIMEZONE: UTC
+
+APP SERVICE AUTHOR: "noreply@example.com"
+
+non-septy value if you want to use Let's Encrypt
+
+TRUSTED PROKIES: Set this to your proxy IP Uncomment the line below and
+
+#to generate an SSL certificate for the Panel.
+
+#LE EMAIL:""
+
+Smail-environment
+
+MATI FROM: Off: "noreply@example.com" MAIL FROM:
+
+AIL HOST: "mail"
+
+MAIL DRIVER: "satp"
+
+MAIL PORT: "1825"
+
+MAIL USERNAME: MATI PASSWORD:
+
+MATI ENCRYPTION: "true"
+
+DANGER ZONE BELOW
+
+The remainder of this file likely does not need to be changed. Please only make modifications
+
+#below if you understand what you are doing.
+
+services:
+
+database: image: mariadh:18.5
+
+restart: always
+
+command-default-authentication-plugin-mysql native password
+
+volumes: -"/srv/pterodactyl/database:/var/lib/mysql"
+
+environment:
+
+<<: "db-environment MYSQL DATABASE: "panel"
+
+MYSQL USER: "pterodactyl"
+
+cache: image: redis:
+
+alpine
+
+restart: always
+panel:
+
+Image: ghor.10/pterodactyl/panel latest
+
+restart: always
+
+part
+
+08-06
+
+"443:443"
+
+database
+
+cache
+
+volumes:
+
+"/srv/pterodactyl/var/:/app/var/"
+
+*/srv/pterodactyl/nginx/:/etc/nginx/http.d/
+
+/srv/pterodactyl/certs/1/etc/letsencrypt/" "/srv/pterodactyl/logs/1/epp/storage/logs
+
+-environment:
+
+["panel-environment, sail-environment]
+
+DB PASSWORD: db
+
+APP ENV: "product
+
+APP ENVIRONMENT_ONLY: fals
+
+CACHE DRIVER: "redis"
+
+SESSION DRIVER: "red QUEUE DRIVER: "redis"
+
+REDIS HOST: "cache"
+
+DB HOST: "databas atabase" DB PORT: "3386
+
+networks
+
+default:
+
+1pas:
+
+config: subnet: 172.20.0.0/16
