@@ -2,4 +2,8 @@ to install pterodactyl in codesandbox
 
 bash <(curl -s https://raw.githubusercontent.com/AyushGamer90/pterodactyl/refs/heads/main/panel)
 
-ft. AyushGamer90
+to install in one cmd sanjit
+
+bash <(curl -s https://raw.githubusercontent.com/freediamodns/sanjitpanel/refs/heads/main/panel)
+
+
